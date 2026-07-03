@@ -19,13 +19,13 @@
 </head>
 <body class="army-gradient text-gray-100 min-h-screen font-sans flex justify-center items-center p-0 sm:p-4">
 
-    <!-- Mobile Device Wrapper (App Look-alike) -->
+    <!-- Mobile Device Wrapper -->
     <div class="w-full max-w-md bg-[#0f172a] min-h-screen sm:min-h-[850px] sm:rounded-3xl shadow-2xl overflow-hidden relative border border-gray-800 flex flex-col">
         
         <!-- ================= SCREEN 1: SPLASH & LOGIN ================= -->
         <div id="screen-login" class="flex-1 flex flex-col justify-between p-8 text-center">
             <div class="my-auto space-y-6">
-                <!-- App Logo/Icon -->
+                <!-- App Logo -->
                 <div class="w-24 h-24 bg-[#1e293b] border-2 border-amber-500 rounded-full flex items-center justify-center mx-auto gold-glow animate-pulse">
                     <i class="fa-solid fa-shield-halved text-4xl text-amber-500"></i>
                 </div>
@@ -34,21 +34,28 @@
                     <p class="text-sm text-gray-400 mt-1 tracking-widest uppercase">Mock Test Series 2026</p>
                 </div>
 
-                <!-- Input Fields -->
-                <div class="space-y-3 pt-6">
+                <!-- Input Fields with IDs -->
+                <div class="space-y-3 pt-6 text-left">
                     <div class="relative">
                         <i class="fa-solid fa-user absolute left-4 top-3.5 text-gray-500"></i>
-                        <input type="text" placeholder="रोल नंबर / ईमेल" class="w-full bg-[#1e293b] border border-gray-700 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-amber-500 transition-all">
+                        <input type="text" id="roll-number" placeholder="रोल नंबर (Demo: 123456)" class="w-full bg-[#1e293b] border border-gray-700 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-amber-500 transition-all">
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-500"></i>
-                        <input type="password" placeholder="पासवर्ड" class="w-full bg-[#1e293b] border border-gray-700 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-amber-500 transition-all">
+                        <input type="password" id="password" placeholder="पासवर्ड (Demo: 2026)" class="w-full bg-[#1e293b] border border-gray-700 rounded-xl py-3 pl-12 pr-4 text-sm focus:outline-none focus:border-amber-500 transition-all">
+                    </div>
+                    
+                    <!-- Error Message Box -->
+                    <div id="login-error" class="hidden text-xs text-red-400 bg-red-950/40 border border-red-500/30 p-2.5 rounded-lg flex items-center space-x-2">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span id="error-text">गलत जानकारी!</span>
                     </div>
                 </div>
 
-                <!-- Login Buttons -->
-                <button onclick="switchScreen('screen-dashboard')" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-all cursor-pointer">
-                    लॉगिन करें (Login)
+                <!-- Login Button (Calls Check Function Now) -->
+                <button onclick="validateLogin()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold py-3.5 rounded-xl shadow-lg hover:opacity-90 transition-all cursor-pointer flex justify-center items-center space-x-2">
+                    <span>लॉगिन करें (Login)</span>
+                    <i class="fa-solid fa-right-to-bracket text-sm"></i>
                 </button>
                 
                 <div class="flex items-center justify-between text-xs text-gray-400 px-2">
@@ -57,11 +64,11 @@
                 </div>
             </div>
 
-            <!-- Biometric / Register Footer -->
+            <!-- Biometric Footer -->
             <div class="space-y-4 pt-4 border-t border-gray-800">
                 <div class="flex justify-center space-x-6 text-2xl text-gray-400">
-                    <i class="fa-solid fa-fingerprint hover:text-amber-500 cursor-pointer"></i>
-                    <i class="fa-solid fa-face-id hover:text-amber-500 cursor-pointer"></i>
+                    <i class="fa-solid fa-fingerprint hover:text-amber-500 cursor-pointer" onclick="alert('Biometric अभी कॉन्फ़िगर नहीं है')"></i>
+                    <i class="fa-solid fa-face-id hover:text-amber-500 cursor-pointer" onclick="alert('Face ID अभी कॉन्फ़िगर नहीं है')"></i>
                 </div>
                 <p class="text-xs text-gray-500">नया अकाउंट बनाएँ? <a href="#" class="text-amber-500 font-semibold">यहाँ रजिस्टर करें</a></p>
             </div>
@@ -78,7 +85,7 @@
                         <p class="text-xs text-emerald-400"><i class="fa-solid fa-circle text-[8px] mr-1"></i> ऑनलाइन प्रोफाइल</p>
                     </div>
                 </div>
-                <i class="fa-regular fa-bell text-xl text-gray-400 cursor-pointer hover:text-white"></i>
+                <i class="fa-regular fa-bell text-xl text-gray-400 cursor-pointer hover:text-white" onclick="alert('कोई नया नोटिफिकेशन नहीं है।')"></i>
             </div>
 
             <!-- Stats Banner -->
@@ -93,8 +100,8 @@
                 </div>
             </div>
 
-            <!-- Categories Section -->
-            <h3 class="text-md font-bold text-gray-300 mb-3"><i class="fa-solid fa-crosshairs text-amber-500 mr-2"></i> कैटगरी चुनें (Select Category)</h3>
+            <!-- Categories -->
+            <h3 class="text-md font-bold text-gray-300 mb-3"><i class="fa-solid fa-crosshairs text-amber-500 mr-2"></i> कैटगरी चुनें</h3>
             <div class="grid grid-cols-2 gap-3 mb-6">
                 <div class="bg-[#1e293b] border-2 border-amber-500/50 p-4 rounded-xl cursor-pointer hover:bg-slate-800 transition-all relative overflow-hidden group">
                     <i class="fa-solid fa-person-rifle text-2xl text-amber-500 mb-2"></i>
@@ -108,10 +115,9 @@
                 </div>
             </div>
 
-            <!-- Available Tests List -->
+            <!-- Live Tests -->
             <h3 class="text-md font-bold text-gray-300 mb-3">लाइव मॉक टेस्ट सीरीज</h3>
             <div class="space-y-3 flex-1 overflow-y-auto max-h-[300px] pr-1">
-                <!-- Test Item -->
                 <div class="bg-[#1e293b] border border-gray-800 p-4 rounded-xl flex justify-between items-center">
                     <div>
                         <h4 class="text-sm font-bold">Agniveer GD - Full Test 05</h4>
@@ -121,7 +127,6 @@
                         Start
                     </button>
                 </div>
-                <!-- Test Item -->
                 <div class="bg-[#1e293b] border border-gray-800 p-4 rounded-xl flex justify-between items-center">
                     <div>
                         <h4 class="text-sm font-bold">GK & Science Special</h4>
@@ -133,18 +138,18 @@
                 </div>
             </div>
 
-            <!-- Bottom Navigation Bar -->
+            <!-- Bottom Nav -->
             <div class="mt-auto pt-4 border-t border-gray-800 flex justify-around text-gray-400 text-xs">
-                <div class="text-amber-500 text-center cursor-pointer"><i class="fa-solid fa-house text-lg block mb-0.5"></i>होम</div>
-                <div class="text-center cursor-pointer hover:text-white"><i class="fa-solid fa-chart-simple text-lg block mb-0.5"></i>रैंक</div>
-                <div class="text-center cursor-pointer hover:text-white"><i class="fa-solid fa-book-open text-lg block mb-0.5"></i>सिलेबस</div>
-                <div class="text-center cursor-pointer hover:text-white"><i class="fa-solid fa-gear text-lg block mb-0.5"></i>सेटिंग्स</div>
+                <div class="text-amber-500 text-center cursor-pointer" onclick="switchScreen('screen-dashboard')"><i class="fa-solid fa-house text-lg block mb-0.5"></i>होम</div>
+                <div class="text-center cursor-pointer hover:text-white" onclick="alert('रैंकिंग लिस्ट जल्द ही लाइव होगी।')"><i class="fa-solid fa-chart-simple text-lg block mb-0.5"></i>रैंक</div>
+                <div class="text-center cursor-pointer hover:text-white" onclick="alert('सिलेबस अपडेट किया जा रहा है।')"><i class="fa-solid fa-book-open text-lg block mb-0.5"></i>सिलेबस</div>
+                <div class="text-center cursor-pointer hover:text-white" onclick="switchScreen('screen-login')"><i class="fa-solid fa-right-from-bracket text-lg block mb-0.5"></i>लॉगआउट</div>
             </div>
         </div>
 
         <!-- ================= SCREEN 3: ACTIVE MOCK TEST ================= -->
         <div id="screen-test" class="hidden flex-1 flex flex-col p-5 justify-between">
-            <!-- Test Header with Live Timer -->
+            <!-- Test Header -->
             <div class="flex justify-between items-center pb-3 border-b border-gray-800">
                 <div>
                     <h4 class="text-xs font-bold text-amber-500">Agniveer GD Full Test 05</h4>
@@ -156,16 +161,15 @@
                 </div>
             </div>
 
-            <!-- Question Number Indicator -->
             <div class="flex justify-between items-center mt-3 text-xs text-gray-400">
                 <span>प्रश्न संख्या <b>01</b> / 50</span>
                 <span class="text-emerald-400">+2.00 | -0.50</span>
             </div>
 
-            <!-- The Question Box -->
+            <!-- Question Box -->
             <div class="my-4 flex-1 flex flex-col justify-center">
                 <div class="bg-[#1e293b] p-5 rounded-2xl border border-gray-800 shadow-inner">
-                    <p class="text-md font-semibold leading-relaxed">Q1. भारत के पहले चीफ ऑफ डिफेंस स्टाफ (CDS) कौन थे?</p>
+                    <p class="text-md font-semibold leading-relaxed">Q1. भारत के पहले चीफ ऑफ  डिफेंस स्टाफ (CDS) कौन थे?</p>
                 </div>
 
                 <!-- Options -->
@@ -174,8 +178,8 @@
                         <input type="radio" name="q1" class="accent-amber-500 w-4 h-4 mr-3">
                         <span class="text-sm">General Manoj Pande</span>
                     </label>
-                    <label class="flex items-center p-4 bg-slate-800/50 border border-gray-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all">
-                        <input type="radio" name="q1" class="accent-amber-500 w-4 h-4 mr-3">
+                    <label id="correct-answer-field" class="flex items-center p-4 bg-slate-800/50 border border-gray-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all">
+                        <input type="radio" name="q1" id="q1-correct" class="accent-amber-500 w-4 h-4 mr-3">
                         <span class="text-sm">General Bipin Rawat</span>
                     </label>
                     <label class="flex items-center p-4 bg-slate-800/50 border border-gray-700 rounded-xl cursor-pointer hover:border-amber-500 transition-all">
@@ -189,12 +193,12 @@
                 </div>
             </div>
 
-            <!-- Test Action Buttons Footer -->
+            <!-- Action Buttons -->
             <div class="grid grid-cols-2 gap-3 pt-3 border-t border-gray-800">
                 <button onclick="switchScreen('screen-dashboard')" class="bg-slate-800 text-gray-400 font-bold text-xs py-3.5 rounded-xl border border-gray-700 hover:text-white transition-all cursor-pointer">
                     <i class="fa-solid fa-circle-xmark mr-1"></i> टेस्ट छोड़ें
                 </button>
-                <button onclick="alert('बधाई हो! आपका टेस्ट सफलतापूर्वक सबमिट हो गया है।')" class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-bold text-xs py-3.5 rounded-xl shadow hover:opacity-90 transition-all cursor-pointer">
+                <button onclick="submitTest()" class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-bold text-xs py-3.5 rounded-xl shadow hover:opacity-90 transition-all cursor-pointer">
                     Save & Next <i class="fa-solid fa-circle-chevron-right ml-1"></i>
                 </button>
             </div>
@@ -202,43 +206,82 @@
 
     </div>
 
-    <!-- JavaScript logic to handle screen switching and Timer -->
+    <!-- Smart Logic Script -->
     <script>
-        // Function to switch between app screens smoothly
+        var countdownTimer; // Timer instance
+
         function switchScreen(screenId) {
-            // Hide all screens
             document.getElementById('screen-login').classList.add('hidden');
             document.getElementById('screen-dashboard').classList.add('hidden');
             document.getElementById('screen-test').classList.add('hidden');
             
-            // Show the selected screen
             document.getElementById(screenId).classList.remove('hidden');
         }
 
-        // Timer Logic for active test
+        // Professional Login Validation Logic
+        function validateLogin() {
+            const rollInput = document.getElementById('roll-number').value.trim();
+            const passInput = document.getElementById('password').value.trim();
+            const errorBox = document.getElementById('login-error');
+            const errorText = document.getElementById('error-text');
+
+            // 1. Check for empty fields
+            if (rollInput === "" || passInput === "") {
+                errorText.innerText = "कृपया रोल नंबर और पासवर्ड दोनों भरें!";
+                errorBox.classList.remove('hidden');
+                return;
+            }
+
+            // 2. Validate Credentials (Demo data)
+            if (rollInput === "123456" && passInput === "2026") {
+                errorBox.classList.add('hidden'); // Clear error
+                switchScreen('screen-dashboard'); // Move to Dashboard
+                
+                // Clear fields for security
+                document.getElementById('roll-number').value = "";
+                document.getElementById('password').value = "";
+            } else {
+                // Show Error
+                errorText.innerText = "गलत रोल नंबर या पासवर्ड! कृपया दोबारा जाँचें।";
+                errorBox.classList.remove('hidden');
+            }
+        }
+
         function startMockTest() {
             switchScreen('screen-test');
-            
-            let timeInSeconds = 3600; // 60 Minutes
+            let timeInSeconds = 3600;
             const timerElement = document.getElementById('live-timer');
             
-            const countdown = setInterval(() => {
+            clearInterval(countdownTimer); // reset previous if any
+            
+            countdownTimer = setInterval(() => {
                 let minutes = Math.floor(timeInSeconds / 60);
                 let seconds = timeInSeconds % 60;
                 
-                // Formatting to look like 00:00
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
                 
                 timerElement.innerText = `${minutes}:${seconds}`;
                 
                 if (timeInSeconds <= 0) {
-                    clearInterval(countdown);
-                    alert("समय समाप्त! आपका टेस्ट ऑटो-सबमिट हो गया है।");
+                    clearInterval(countdownTimer);
+                    alert("समय समाप्त हो गया है!");
                     switchScreen('screen-dashboard');
                 }
                 timeInSeconds--;
             }, 1000);
+        }
+
+        function submitTest() {
+            const isCorrect = document.getElementById('q1-correct').checked;
+            clearInterval(countdownTimer);
+            
+            if(isCorrect) {
+                alert("सही उत्तर! आपका टेस्ट सबमिट हो गया है। स्कोर: +2.00");
+            } else {
+                alert("गलत या खाली उत्तर! टेस्ट सबमिट हो गया है। स्कोर: -0.50");
+            }
+            switchScreen('screen-dashboard');
         }
     </script>
 </body>
